@@ -2,8 +2,8 @@
 Online_Calendar
 ===============
 
-:SUMMARY: Use VBA to extract my Free/Busy calendar from MS Outlook, and Python &
-          jinja2 to post it at https://DavidTutor.Neocities.org.  
+:SUMMARY: Use VBA to extract my Free/Busy calendar from MS Outlook, and use
+          Python & jinja2 to post it at https://DavidTutor.Neocities.org.  
 
 :REPOSITORY: https://github.com/DavidJLambert/Online_Calendar/
 
