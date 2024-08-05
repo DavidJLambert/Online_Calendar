@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>David Lambert's Availability</title>
+		<link href="styles.css" rel="stylesheet" type="text/css" media="all">
+	</head>
+	<body>
+		<h3> David Lambert's Availability </h3>
+		<div style="margin-left: 10px;">
+			<h3> My time zone is {{tz_name}} </h3>
+			<h4>
+			Click your time zone to see his <br>
+			availability in your time zone. </h4>
+			
+		{% for key in files %}
+			<a href="/{{files[key]}}">{{long_tzs[key]}}</a><br>
+		{% endfor %}
+
+		</div>
+	</body>
+</html>

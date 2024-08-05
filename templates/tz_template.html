@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>David Lambert's Availability</title>
+		<link href="styles.css" rel="stylesheet" type="text/css" media="all">
+	</head>
+	<body>
+		<h3> David Lambert's Availability </h3>
+		<h3> {{timezone}} </h3>
+		
+		<a href="https://davidtutor.neocities.org">Click here if this is not your time zone</a>
+		{% if written is not none %}
+			<h4> Updated {{ written }} </h4>
+		{% else %}
+			<br><br>
+		{% endif %}
+
+		{% for day, time_slots in calendar.items() %}
+		{{day}} free times:
+		<ul>
+			{% for time_slot in time_slots %}
+			<li> {{time_slot}} </li>
+			{% endfor %}
+		</ul>
+		
+		{% endfor %}
+	</body>
+</html>

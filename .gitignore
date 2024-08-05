@@ -1,0 +1,17 @@
+# Byte-compiled / optimized / DLL files
+.pytest_cache/
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Directories
+.idea/
+junk/
+output/
+
+# Files
+*.bak
+debug.log
+version.txt
+error.txt
+login_*.py
