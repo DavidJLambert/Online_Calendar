@@ -1,7 +1,6 @@
 Option Explicit
 
-' Outlook VBA that extracts Outlook Calendar items and writes them to file
-' ("C:\Coding\PyCharm\projects\OnlineCalendar\templates\schedule.tsv"). 
+' Outlook VBA that extracts Outlook Calendar items and writes them to file ("C:\Coding\PyCharm\projects\OnlineCalendar\templates\schedule.tsv"). 
 
 Private Function MinDate(dtDate1 As Date, dtDate2 As Date) As Date
     ' Return the earlier of two dates.
@@ -54,21 +53,11 @@ Private Function GetCalendarObject(ParentFolder As String, SubFolder As String) 
 
 End Function
 
-' For publishing my calendar to davidtutor.neocities.org.
-' Important constraint.  There cannot be two "Busy" calendar items with overlapping times.
 Public Sub WriteSchedule()
-
-    Dim num_days As Integer
-    num_days = 10
-
-    Dim output_file As String
-    output_file = "C:\Coding\PyCharm\projects\OnlineCalendar\templates\schedule.tsv"
-
     ' Get Outlook appointments.
     Dim oItems As Outlook.Items
     Dim oItemsForExport As Outlook.Items
     Dim oItem As Outlook.AppointmentItem
-    Dim oShell As Object
 
     ' Select appointments for each day in the next 10 days.
     Dim dtToday As Date
@@ -91,7 +80,13 @@ Public Sub WriteSchedule()
     ' Date/Time format
     Dim dtFormat As String
 
+    Dim num_days As Integer
+    Dim output_file As String
+
     Dim WshShell
+
+    output_file = "C:\Coding\PyCharm\projects\OnlineCalendar\templates\schedule.tsv"
+    num_days = 10
 
     ' Initialize Globals and Constants
     'dtNormalDayStartTime = 9 / 24 ' 9:00am
@@ -130,9 +125,6 @@ Public Sub WriteSchedule()
             ' Debug.Print Format$(oItem.Start, dtFormat) & vbTab & Format$(oItem.End, dtFormat)
         End If
     Next oItem
-    
-    ' Add date/time VBA executed to end of file.
-    oFile.WriteLine "Written" & vbTab & Format$(DateTime.Now, dtFormat)
 
     ' Close File
     oFile.Close
@@ -143,7 +135,5 @@ Public Sub WriteSchedule()
 
     WshShell.Run """C:\ProgramData\Microsoft\Windows\Start Menu\Programs\CalendarUpdate.bat.lnk"""
 
-    Set oShell = CreateObject("WScript.Shell")
-    oShell.Run "mshta.exe vbscript:close(CreateObject(""WScript.shell"").Popup(""All Done""," & 2 & ",""Microsoft Outlook VBA""))"
-
+    MsgBox ("All Done")
 End Sub

@@ -1,7 +1,7 @@
 """ generate_online_calendar.py
 
 REPOSITORY:
-    https://github.com/DavidJLambert/wyzant
+    https://github.com/DavidJLambert/Online_Calendar/
 
 AUTHOR:
     David J. Lambert
@@ -37,10 +37,10 @@ else:
 long_tzs, short_tzs, utc, files = get_timezones(dt_now)
 
 print("Timezone information:")
-print(f"{'KEY':4s}   {'UTC':10s} {'FILES':10s} {'SHORT_TZ':10s} {'LONG_TZS':55s}")
-print(f"{'---':4s}   {'---':10s} {'-----':10s} {'--------':10s} {'--------':55s}")
+print(f"{' KEY ':5s}   {'UTC   ':10s} {'FILES ':10s} {'SHORT_TZ':10s} {'LONG_TZS':55s}")
+print(f"{'-----':5s}   {'------':10s} {'------':10s} {'--------':10s} {'--------':55s}")
 for key in sorted(long_tzs):
-    print(f"{key:4}   {utc[key]:10s} {files[key]:10s} {short_tzs[key]:10s} {long_tzs[key]:55s}")
+    print(f"{key:5.1f}   {utc[key]:10s} {files[key]:10s} {short_tzs[key]:10s} {long_tzs[key]:55s}")
 print()
 
 # Generate index.html
@@ -92,7 +92,6 @@ Convert dt_dict to list of available time slots, in this format:
  ...]
 '''
 # Remove items from dt_dict if they're in the past.
-dt_now = datetime.now()
 for key in sorted(dt_dict):
     if key < dt_now:
         del dt_dict[key]
@@ -129,22 +128,22 @@ for item_number in range(0, len(temp_list), 2):
         exit(1)
     free_slots.append([temp_list[item_number][0], temp_list[item_number+1][0]])
 
-'''
 # Debug output.
+"""
 print("Schedule:")
 print(f"{'START':19s}   {'END':5s}")
 print(f"{'-----':19s}   {'---':5s}")
 for item in free_slots:
     print(f"{item[0]}   {item[1]}")
 print()
-'''
+"""
 
 files_to_upload = {}
 
 # Iterate through time zones, generate html files containing my schedule.
 for tz_key in sorted(long_tzs.keys()):
     tz_value = long_tzs[tz_key]
-    tz_offset = utc_offset + tz_key
+    tz_offset = tz_key - utc_offset
 
     # Convert my schedule into this time zone.
     free_slots_tz = list()

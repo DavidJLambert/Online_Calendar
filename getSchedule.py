@@ -33,13 +33,10 @@ def get_schedule(debug=False):
                 # Handle dt_dict[dt_start].
                 if previous_dt_start >= dt_start:
                     print("WTF? previous_dt_start >= dt_start in getSchedule")
-                    print(f"{previous_dt_start=} {dt_start=}")
                 elif previous_dt_end >= dt_end:
                     print("WTF? previous_dt_end >= dt_end in getSchedule")
-                    print(f"{previous_dt_end=} {dt_end=}")
                 elif previous_dt_end > dt_start:
                     print("OVERLAPPING ITEMS")
-                    print(f"{previous_dt_end=} {dt_start=}")
                 elif dt_start not in dt_dict:
                     # Start day/time not in dt_dict.
                     dt_dict[dt_start] = "start"

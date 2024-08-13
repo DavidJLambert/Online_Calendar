@@ -46,13 +46,7 @@ How It All Works
 
     b.  Finds all calendar items with BusyStatus="Busy".
 
-    c.  Withholds the name/subject of each item.
-
-    d.  Consolidates consecutive items.
-
-    e.  Finds the **available** time slots between the busy time slots.
-
-    f.  And saves a summary of my available time slots to templates/schedule.tsv.
+    c.  Saves the start and end times of all busy time slots to templates/schedule.tsv.
 
         Note: the VBA assumes there are never overlapping "Busy" calendar items.
     
@@ -66,9 +60,13 @@ How It All Works
 
     c.  Reads my schedule from templates/schedule.tsv.
 
-    d.  Translates this schedule into each timezone obtained in Step 2b.
+    d.  Consolidates all adjacent busy time slots.
 
-    e.  Writes each time zone's translated schedule to web/UTC<NNN>.html using
+    e.  Finds all free time slots.
+
+    f.  Translates all free time slots into each timezone obtained in Step 2b.
+
+    g.  Writes each time zone's translated schedule to web/UTC<NNN>.html using
         jinja2 and templates/tz_template.html, where <NNN> is the UTC offset for
         that time zone.
 
